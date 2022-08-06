@@ -4,14 +4,13 @@ import img_01 from "../../assets/images/img-1.png";
 import { useNavigate } from "react-router-dom";
 
 const Home = ({ connectwallet, account }) => {
-  
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(account){
-      navigate('/stake');
-    };
-  },[account, navigate]);
+    if (account) {
+      navigate("/stake");
+    }
+  }, [account, navigate]);
 
   const onClickConnect = () => {
     connectwallet();
@@ -22,7 +21,7 @@ const Home = ({ connectwallet, account }) => {
       <div className="topic-and-btn-wrapper">
         <div className="title-wrapper">
           <div className="title-1">Stack NFTs,</div>
-          <div className="title-2">Earn $RNM</div>
+          <div className="title-2">Earn $HAY</div>
         </div>
         <div className="connect-btn-wrapper">
           <button className="connect-btn" onClick={onClickConnect}>

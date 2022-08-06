@@ -45,7 +45,7 @@
 }
 
 .card-btn {
-  background-color: #2181F2;
+  background-color: #8dcd49;
   text-transform: uppercase;
   transition: 0.3s;
 
@@ -69,7 +69,7 @@
   /* letter-spacing: 0.06em; */
   /* text-align: left; */
   border-radius: 1em;
-  background: #2181F2;
+  background: #8dcd49;
   color: #FFFFFF;
   cursor: pointer;
   border: none;

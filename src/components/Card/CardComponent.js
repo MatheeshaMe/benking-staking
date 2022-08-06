@@ -58,7 +58,7 @@ const CardComponent = ({
                       onClick={onClickPlus}
                       className="plus-btn"
                       style={{
-                        background: `${isInUnstakeArr ? "green" : "#2181F2"}`,
+                        background: `${isInUnstakeArr ? "green" : "#8dcd49"}`,
                       }}
                     >
                       {isInUnstakeArr ? (

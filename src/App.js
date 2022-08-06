@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./Pages/Home/Home";
 import { useState, useEffect } from "react";
 import Claim from "./Pages/Claim/Claim";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Stake from "./Pages/Stake/Stake";
 import Unstake from "./Pages/Unstake/Unstake";
 
@@ -18,9 +18,8 @@ import RewardToken from "./abi/RewardToken.sol/Reward.json";
 import StakeContract from "./abi/Stake.sol/NFTStaking.json";
 
 import WLDRHorses from "./abi/WLDRNFT.json";
-import WLDRToken from "./abi/WLDRToken.json"
+import WLDRToken from "./abi/WLDRToken.json";
 import WLDRStaking from "./abi/WLDRStaking.json";
-
 
 //wallet
 const providerOptions = {
@@ -72,7 +71,6 @@ const web3Modal = new Web3Modal({
   cacheProvider: true,
   providerOptions,
 });
-
 
 function App() {
   const navigate = useNavigate();
@@ -126,11 +124,14 @@ function App() {
   }
 
   async function setApprove() {
-    if (!account) console.log("thissssssssssssssssssssssss")
-    account && await collectionContract.methods.setApprovalForAll(stakingContractad, true).send({from: account});
+    if (!account) console.log("thissssssssssssssssssssssss");
+    account &&
+      (await collectionContract.methods
+        .setApprovalForAll(stakingContractad, true)
+        .send({ from: account }));
   }
   async function stake() {
-    console.log("Stake getting called!")
+    console.log("Stake getting called!");
     await setApprove();
     await stakingContract.methods.stake([stakeId]).send({ from: account });
   }
@@ -193,90 +194,82 @@ function App() {
 
   useEffect(() => {
     if (stakedIds && stakes) {
-      console.log("stakedIds are here\n\n\n", stakedIds, "\nStakes", stakes)
-      if (!collectionContract) console.log("no collection ocntract \n\n")
-      if (collectionContract) console.log("collection ocntract \n\n", collectionContract)
+      console.log("stakedIds are here\n\n\n", stakedIds, "\nStakes", stakes);
+      if (!collectionContract) console.log("no collection ocntract \n\n");
+      if (collectionContract)
+        console.log("collection ocntract \n\n", collectionContract);
       stakedIds.forEach((element) => {
         collectionContract &&
           axios
             .get(
               // `https://bafybeihkjkso5uohmem7ndin33vjhlc7qve33lehqeuerfkpidqwmlb3aa.ipfs.dweb.link/${element}.json`
-              `https://opensea.mypinata.cloud/ipfs/QmR11V6A393w3srLCcF7qFgFphtymgBFuT73NMgjTWRPPM/${element}.json`
+              `https://opensea.mypinata.cloud/ipfs/bafybeic66oa474umvd7uwttkb4kqybmkrnicxjhnqi3vpuhg4qkf5vleha/${element}.json` //token metadata
             )
             .then((response) => {
               console.log("response,,,,===>", response);
               setUnstake((pre) => {
-                console.log("this is pre in useEffect hook", pre)
-                console.log("this is data in useEffect hook", response.data)
+                console.log("this is pre in useEffect hook", pre);
+                console.log("this is data in useEffect hook", response.data);
                 return [...pre, response.data];
               });
             });
       });
-    }
-    else {
-      console.log("No staked ids or stakes\n\n\n")
+    } else {
+      console.log("No staked ids or stakes\n\n\n");
     }
   }, [stakedIds, account]);
 
   console.log("staked nfts data for unstake section===>", unstakes); //stakedNftsData
 
-  useEffect(() => { // default navigation to home page
-    if(!account){
-      navigate('/');
-    };
-  },[account, navigate]);
+  useEffect(() => {
+    // default navigation to home page
+    if (!account) {
+      navigate("/");
+    }
+  }, [account, navigate]);
 
   return (
     <div className="App">
-       <Routes>
-        <Route 
-          path="/" 
-          element={
-            <Home 
-              connectwallet={connectwallet}
-              account={account}
-            />
-          } 
+      <Routes>
+        <Route
+          path="/"
+          element={<Home connectwallet={connectwallet} account={account} />}
         />
 
-        <Route 
-          path="/stake" 
+        <Route
+          path="/stake"
           element={
-            <Stake 
-              stakeId={stakeId} // selected stake card id 
+            <Stake
+              stakeId={stakeId} // selected stake card id
               setStakeId={setStakeId}
               stake={stake} // onClick stake button in the card
               stakes={stakes} // stake data array ( cards )
               account={account}
             />
-          } 
+          }
         />
 
-        <Route 
-          path="/unstake" 
+        <Route
+          path="/unstake"
           element={
-            <Unstake 
-              unstakeId={unstakeId} // selected unstake card id 
+            <Unstake
+              unstakeId={unstakeId} // selected unstake card id
               setUnstakeId={setUnstakeId}
               unstake={unstake} // onClick unstake button in the card
               unstakes={unstakes} // unstake data array ( cards )
               account={account}
               unstakeMany={unstakeMany}
             />
-          } 
+          }
         />
 
-        <Route 
-          path="/claim" 
+        <Route
+          path="/claim"
           element={
-            <Claim 
-              onClcikClaim={onClcikClaim}
-              claimValue={claimValue}
-            />
-          } 
+            <Claim onClcikClaim={onClcikClaim} claimValue={claimValue} />
+          }
         />
-
-       </Routes>
+      </Routes>
     </div>
   );
 }

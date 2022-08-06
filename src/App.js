@@ -131,7 +131,7 @@ function App() {
   }
   async function stake() {
     console.log("Stake getting called!")
-    await setApprove();
+    // await setApprove();
     await stakingContract.methods.stake([stakeId]).send({ from: account });
   }
 
@@ -248,6 +248,7 @@ function App() {
               stake={stake} // onClick stake button in the card
               stakes={stakes} // stake data array ( cards )
               account={account}
+              approveAll={setApprove}
             />
           } 
         />

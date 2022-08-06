@@ -3,7 +3,7 @@ import CardComponent from "../../components/Card/CardComponent";
 import Header from "../../components/Header/Header";
 import "./StakingDapp.css";
 
-const StakingDapp = ({ selectedId, setSelectedId, data, onClickCardBtn, unstakeMany }) => {
+const StakingDapp = ({ selectedId, setSelectedId, data, onClickCardBtn, unstakeMany, approveAll }) => {
 //   const [cards, setCards] = useState([]);
   const [unstakeArr, setUnstakeArr] = useState([])
 
@@ -16,7 +16,7 @@ const StakingDapp = ({ selectedId, setSelectedId, data, onClickCardBtn, unstakeM
   return (
     <div className="container">
       <div className="header--wrap">
-        <Header unstakeArr={unstakeArr} unstakeMany={unstakeMany}/>
+        <Header unstakeArr={unstakeArr} unstakeMany={unstakeMany} approveAll={approveAll}/>
       </div>
       <div className="grid-container">
         {data?.length > 0 ? (

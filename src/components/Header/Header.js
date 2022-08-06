@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // import { Routes } from "../../App";
 import "./Header.css";
 
-const Header = ({ unstakeMany, unstakeArr }) => {
+const Header = ({ unstakeMany, unstakeArr, approveAll }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentRouteName = location.pathname.slice(1); // stake / unstake
@@ -31,9 +31,11 @@ const Header = ({ unstakeMany, unstakeArr }) => {
   return (
     <div className="header-wrapper">
       <div className="btn-wrapper">
-        <div className="stacke-btn-wrapper">
-          <button className="stacke-btn btn">Approve All</button>
-        </div>
+        {approveAll && (
+          <div className="stacke-btn-wrapper">
+            <button className="stacke-btn btn" onClick={approveAll}>Approve All</button>
+          </div>
+        )}
         <div className="stacke-btn-wrapper">
           <button className="stacke-btn btn" onClick={onClickStakeButton}>
             STAKE

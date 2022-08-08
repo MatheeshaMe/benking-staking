@@ -145,8 +145,10 @@ function App() {
   }
 
   async function earningInfo() {
+    const ids = await stakingContract.methods.tokensOfOwner(account).call();
+
     const earnings = await stakingContract.methods
-      .earningInfo(account, stakedIds)
+      .earningInfo(account, ids)
       .call();
     setEarnings(earnings);
     console.log(`earnings${earnings}`);
@@ -169,7 +171,7 @@ function App() {
     // unstakeId &&
     console.log(`claim Ids ${typeof ids}`);
     ids.length > 0 &&
-      stakingContract.methods.claim([ids]).send({ from: account });
+      stakingContract.methods.claim(ids).send({ from: account });
   }
 
   const getassets = async () => {

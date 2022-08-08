@@ -19,6 +19,7 @@ const Claim = ({
   //     return '';
   // };
   const v = Web3.utils.fromWei(earnings.toString(), "ether");
+  console.log(`v:-${earnings}`);
 
   return (
     <div className="claim-container">

@@ -164,8 +164,12 @@ function App() {
   };
   async function claim() {
     console.log("claiming");
-    unstakeId &&
-      stakingContract.methods.claim([unstakeId]).send({ from: account });
+    console.log(unstakeId);
+    const ids = await stakingContract.methods.tokensOfOwner(account).call();
+    // unstakeId &&
+    console.log(`claim Ids ${typeof ids}`);
+    ids.length > 0 &&
+      stakingContract.methods.claim([ids]).send({ from: account });
   }
 
   const getassets = async () => {

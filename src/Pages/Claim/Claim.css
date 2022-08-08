@@ -1,3 +1,10 @@
+/* .colors{
+    background-color: #8dcd49
+    black;
+    #272626
+    #fff
+
+} */
 .claim-container {
     padding: 40px 40px;
     min-height: 100vh;
@@ -51,12 +58,12 @@
     padding-right: 30px;
 }
 
-.rnm-wrapper {
-    color: #2181F2;
+.HAY-wrapper {
+    color: #8dcd49;
 }
 
 .claim--btn {
-    background: #2181F2;
+    background: #8dcd49;
     box-shadow: -2px 4px 42px -11px #FFFFFF;
     border-radius: 50px;
     padding: 20px 50px;

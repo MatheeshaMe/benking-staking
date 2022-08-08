@@ -34,7 +34,8 @@ const StakingDapp = ({
                   // image={`https://bafybeigrpdmlzlzy7etwkjxkq5wvbpuhmlk4aoszt57s3vvtanvyc2avwm.ipfs.dweb.link/${
                   //   card.token_id ? card.token_id : card.edition
                   // }.png`}
-                  image={card.animation_url}
+                  animation={card.animation_url && card.animation_url}
+                  image={card.image_url && card.image_url}
                   id={card.edition ? card.edition : card.token_id}
                   selectedId={selectedId}
                   setSelectedId={setSelectedId}

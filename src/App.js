@@ -144,6 +144,14 @@ function App() {
     stakingContract.methods.unstake(unstakeArr).send({ from: account });
   }
 
+  async function earningInfo() {
+    const earnings = await stakingContract.methods
+      .earningInfo(account, stakedIds)
+      .call();
+    setEarnings(earnings);
+    console.log(`earnings${earnings}`);
+  }
+
   async function getStakedNfts() {
     const stakedTokenIds = await stakingContract.methods
       .tokensOfOwner(account)
@@ -155,13 +163,9 @@ function App() {
     console.log("on click claim");
   };
   async function claim() {
-    stakingContract.methods.claim(stakedIds).send({ from: account });
-  }
-  async function verify() {
-    var getbalance = Number(
-      await stakingContract.methods.balanceOf(account).call()
-    );
-    setBalance(getbalance);
+    console.log("claiming");
+    unstakeId &&
+      stakingContract.methods.claim([unstakeId]).send({ from: account });
   }
 
   const getassets = async () => {
@@ -266,7 +270,13 @@ function App() {
         <Route
           path="/claim"
           element={
-            <Claim onClcikClaim={onClcikClaim} claimValue={claimValue} />
+            <Claim
+              onClcikClaim={onClcikClaim}
+              claimValue={claimValue}
+              earnings={earnings}
+              earningInfo={earningInfo}
+              claim={claim}
+            />
           }
         />
       </Routes>

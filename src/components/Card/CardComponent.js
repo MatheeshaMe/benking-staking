@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Card.css";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
+import { cardActionAreaClasses } from "@mui/material";
 
 const CardComponent = ({
   image,
@@ -11,6 +12,8 @@ const CardComponent = ({
   onClickCardBtn,
   setUnstakeArr,
   unstakeArr,
+  animation,
+  // image,
 }) => {
   const location = useLocation();
   const currentRouteName = location.pathname.slice(1); // stake / unstake
@@ -43,9 +46,15 @@ const CardComponent = ({
         <div className="card-body">
           {/* <img src={image} alt="img" className="image" /> */}
           {/* <video autoPlay loop muted className="video"/> */}
-          <video width="320" height="240" autoplay muted>
-            <source src={image} type="video/mp4" />
-          </video>
+          {animation ? (
+            <>
+              <video width="320" height="240" autoplay muted>
+                <source src={animation} type="video/mp4" />
+              </video>
+            </>
+          ) : (
+            <img src={image} alt="img" className="image" />
+          )}
           <>
             {selectedId ? (
               selectedId === id || isInUnstakeArr ? (
